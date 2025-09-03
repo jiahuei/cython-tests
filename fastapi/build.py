@@ -3,6 +3,7 @@ import os
 import shutil
 import subprocess
 import sys
+from os.path import basename, join
 
 
 def build_cython_library():
@@ -11,9 +12,9 @@ def build_cython_library():
     print("Building Cython library...")
 
     # Remove old build
-    if os.path.exists("octo"):
-        shutil.rmtree("octo")
-        print('Removed "octo" directory')
+    if os.path.exists("ooo"):
+        shutil.rmtree("ooo")
+        print('Removed "ooo" directory')
 
     # Build the extension
     result = subprocess.run(
@@ -37,10 +38,15 @@ def build_cython_library():
         os.remove(f)
         print(f'Removed "{f}"')
 
-    # Remove all Python files in the octo package
+    # Remove all Python files in the ooo package
     for f in glob.glob("src/**/*.py", recursive=True):
         os.remove(f)
         print(f'Removed "{f}"')
+
+    # For some reason routers is not placed in a directory
+    os.makedirs(join("ooo", "routers"))
+    for f in glob.glob("counters.*.so", recursive=True):
+        os.rename(f, join("ooo", "routers", basename(f)))
 
     print("Cleanup complete!")
     return True
