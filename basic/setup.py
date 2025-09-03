@@ -4,7 +4,7 @@ from Cython.Build import cythonize
 from setuptools import find_packages, setup
 
 # Find all Python files in the mathlib package
-python_files = glob.glob("octo/*.py")
+python_files = glob.glob("src/**/*.py")
 
 setup(
     name="mathlib",

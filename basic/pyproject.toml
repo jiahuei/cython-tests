@@ -92,11 +92,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "octo"
-description = "JamAI Base: Let Your Database Orchestrate LLMs and RAG"
+description = "A simple library to add numbers."
 readme = "README.md"
 requires-python = ">=3.10"
-# keywords = ["one", "two"]
-license = { text = "Apache 2.0" }
+license = "Apache-2.0"
 classifiers = [ # https://pypi.org/classifiers/
     "Development Status :: 3 - Alpha",
     "Programming Language :: Python :: 3 :: Only",
