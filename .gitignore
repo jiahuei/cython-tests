@@ -8,6 +8,7 @@ thumbs.db
 *.log
 *.lock
 *.db
+*.sqlite3
 *.parquet
 
 # Docker
