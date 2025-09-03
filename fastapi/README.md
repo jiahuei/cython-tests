@@ -1,6 +1,6 @@
 # OOO
 
-A basic library to add two numbers.
+A basic FastAPI SQLite counter app.
 
 ## Compiling the Library
 
