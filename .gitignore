@@ -1,0 +1,51 @@
+# OS
+thumbs.db
+.DS_Store
+
+# Internal references, dependencies, temporary folders & files
+.env
+**/__ref__/
+*.log
+*.lock
+*.db
+*.parquet
+
+# Docker
+/docker_data/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info
+.pytest_cache
+.ipynb_checkpoints
+venv/
+
+# pip
+**/build/
+
+# pytest-cov
+**/coverage.xml
+**/.coverage*
+/junit
+/htmlcov
+/coverage.xml
+
+# ruff
+.ruff_cache/
+
+# OS
+thumbs.db
+.DS_Store
+
+# javascript compiled code
+clients/typescript/**/*.js*
+clients/typescript/dist/**
+clients/typescript/**/*.d.ts
+
+**/node_modules/
+**/docs-autogen/
+**/docs-autogen-ts/
+**/dist
+
