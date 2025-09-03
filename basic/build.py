@@ -11,7 +11,7 @@ def build_cython_library():
 
     # Build the extension
     result = subprocess.run(
-        [sys.executable, "setup.py", "build_ext", "--inplace"],
+        [sys.executable, "setup.py", "build_ext", "--build-lib", "."],
         capture_output=True,
         text=True,
     )
