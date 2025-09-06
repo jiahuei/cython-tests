@@ -66,6 +66,12 @@ async def health() -> ORJSONResponse:
     return ORJSONResponse(status_code=200)
 
 
+# Process OpenAPI docs
+openapi_schema = app.openapi()
+openapi_schema["info"]["x-logo"] = {"url": "https://www.jamaibase.com/favicon.svg"}
+app.openapi_schema = openapi_schema
+
+
 class StandaloneApplication(BaseApplication):
     def __init__(self, app, options=None):
         self.options = options or {}
