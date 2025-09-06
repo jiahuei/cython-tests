@@ -1,6 +1,7 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from loguru import logger
 
 from ooo.db import AsyncSession, yield_async_session
 from ooo.db.models import Counter
@@ -17,10 +18,13 @@ async def create_counter(
     session: Annotated[AsyncSession, Depends(yield_async_session)],
     body: CounterCreate,
 ) -> CounterRead:
+    if await session.get(Counter, body.name):
+        raise HTTPException(status_code=409, detail="Counter already exists")
     counter = Counter.model_validate(body)
     session.add(counter)
     await session.commit()
     await session.refresh(counter)
+    logger.info(f"Created counter: {counter}")
     return counter
 
 
@@ -32,6 +36,7 @@ async def get_counter(
     counter = await session.get(Counter, name)
     if counter is None:
         raise HTTPException(status_code=404, detail="Counter not found")
+    logger.info(f"Retrieved counter: {counter}")
     return counter
 
 
@@ -47,6 +52,7 @@ async def increment_counter(
     session.add(counter)
     await session.commit()
     await session.refresh(counter)
+    logger.info(f"Incremented counter: {counter}")
     return counter
 
 
@@ -60,4 +66,5 @@ async def delete_counter(
         raise HTTPException(status_code=404, detail="Counter not found")
     await session.delete(counter)
     await session.commit()
+    logger.info(f'Deleted counter "{name}"')
     return counter
